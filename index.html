@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Extractor</title>
+    <title>Facebook Cookie Extractor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,18 +39,18 @@
 </head>
 <body>
 
-<h1>Cookie Extractor Tool</h1>
-<p>Nhấn nút dưới đây để lấy và sao chép cookie của trang web hiện tại.</p>
+<h1>Facebook Cookie Extractor</h1>
+<p>Nhấn nút dưới đây để lấy cookie từ Facebook.</p>
 <button onclick="getCookies()">Lấy Cookie</button>
 
 <div id="cookie-display"></div>
 
 <script>
     function getCookies() {
-        // Lấy toàn bộ cookie của trang web hiện tại
+        // Lấy tất cả cookie từ trang hiện tại
         const cookies = document.cookie;
         
-        // Hiển thị cookie lên trang web
+        // Kiểm tra nếu có cookie
         const cookieDisplay = document.getElementById("cookie-display");
         if (cookies) {
             cookieDisplay.textContent = cookies; // Hiển thị cookie dưới dạng văn bản
