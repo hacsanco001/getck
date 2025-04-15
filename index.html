@@ -3,107 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Web Của Tôi</title>
+    <title>Cookie Extractor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
             text-align: center;
         }
-
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-
-        #cookie-display {
-            margin-top: 20px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
         button {
-            padding: 10px 15px;
-            background-color: #333;
+            background-color: #4CAF50;
             color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
             border: none;
             cursor: pointer;
+            margin-top: 20px;
         }
-
         button:hover {
-            background-color: #555;
+            background-color: #45a049;
+        }
+        #cookie-display {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e7e7e7;
+            border-radius: 8px;
+            word-wrap: break-word;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Chào mừng đến với trang web của tôi!</h1>
-    </header>
-    
-    <div class="content">
-        <p>Đây là một trang web mẫu đơn giản được triển khai trên GitHub Pages.</p>
-        <button onclick="changeText()">Nhấn để thay đổi nội dung</button>
-        <p id="dynamic-text"></p>
+
+<h1>Cookie Extractor Tool</h1>
+<p>Nhấn nút dưới đây để lấy và sao chép cookie của trang web hiện tại.</p>
+<button onclick="getCookies()">Lấy Cookie</button>
+
+<div id="cookie-display"></div>
+
+<script>
+    function getCookies() {
+        // Lấy toàn bộ cookie của trang web hiện tại
+        const cookies = document.cookie;
         
-        <!-- Đoạn này để hiển thị cookie -->
-        <p id="cookie-display">Cookie hiện tại: Chưa có cookie.</p>
-        <button onclick="getCookies()">Lấy Cookie</button>
-        <button onclick="copyCookie()">Sao chép Cookie vào Clipboard</button>
-    </div>
-    
-    <footer>
-        <p>© 2025 Trang Web Của Tôi</p>
-    </footer>
-
-    <script>
-        // Hàm thay đổi nội dung
-        function changeText() {
-            document.getElementById("dynamic-text").innerHTML = "Nội dung đã thay đổi!";
+        // Hiển thị cookie lên trang web
+        const cookieDisplay = document.getElementById("cookie-display");
+        if (cookies) {
+            cookieDisplay.textContent = cookies; // Hiển thị cookie dưới dạng văn bản
+            copyToClipboard(cookies); // Sao chép cookie vào clipboard
+            alert('Cookie đã được sao chép vào clipboard!');
+        } else {
+            cookieDisplay.textContent = "Không có cookie nào.";
+            alert("Không có cookie nào để sao chép!");
         }
+    }
 
-        // Hàm lấy cookie và hiển thị nó
-        function getCookies() {
-            const cookies = document.cookie; // Lấy tất cả cookie
-            const cookieDisplay = document.getElementById("cookie-display");
+    // Hàm sao chép vào clipboard
+    function copyToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+    }
+</script>
 
-            if (cookies) {
-                cookieDisplay.innerHTML = "Cookie hiện tại: " + cookies;
-            } else {
-                cookieDisplay.innerHTML = "Không có cookie nào.";
-            }
-        }
-
-        // Hàm sao chép cookie vào clipboard
-        function copyCookie() {
-            const cookies = document.cookie; // Lấy tất cả cookie
-            if (cookies) {
-                navigator.clipboard.writeText(cookies).then(() => {
-                    alert("Cookie đã được sao chép vào clipboard!");
-                }).catch(err => {
-                    alert("Lỗi khi sao chép cookie: " + err);
-                });
-            } else {
-                alert("Không có cookie nào để sao chép.");
-            }
-        }
-    </script>
 </body>
 </html>
