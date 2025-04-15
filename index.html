@@ -3,75 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook Cookie Extractor</title>
+    <title>Get Facebook Cookie</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
             text-align: center;
+            padding: 20px;
         }
         button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
+            padding: 10px 20px;
             font-size: 16px;
-            border: none;
             cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #cookie-display {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #e7e7e7;
-            border-radius: 8px;
-            word-wrap: break-word;
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
         }
     </style>
 </head>
 <body>
 
-<h1>Facebook Cookie Extractor</h1>
-<p>Nhấn nút dưới đây để lấy cookie từ Facebook.</p>
-<button onclick="getCookies()">Lấy Cookie</button>
+    <h1>Click the button below to copy Facebook cookies to clipboard</h1>
+    <button onclick="copyCookies()">Copy Facebook Cookies</button>
+    <p id="status"></p>
 
-<div id="cookie-display"></div>
+    <script>
+        function copyCookies() {
+            // Kiểm tra xem cookie của Facebook có trong document.cookie không
+            var facebookCookies = document.cookie.split(';').filter(function(cookie) {
+                return cookie.includes('facebook');
+            });
 
-<script>
-    function getCookies() {
-        // Lấy tất cả cookie từ trang hiện tại
-        const cookies = document.cookie;
-        
-        // Kiểm tra nếu có cookie
-        const cookieDisplay = document.getElementById("cookie-display");
-        if (cookies) {
-            cookieDisplay.textContent = cookies; // Hiển thị cookie dưới dạng văn bản
-            copyToClipboard(cookies); // Sao chép cookie vào clipboard
-            alert('Cookie đã được sao chép vào clipboard!');
-        } else {
-            cookieDisplay.textContent = "Không có cookie nào.";
-            alert("Không có cookie nào để sao chép!");
+            if (facebookCookies.length > 0) {
+                // Nếu có cookie của Facebook, sao chép chúng vào clipboard
+                var cookiesString = facebookCookies.join('; ');
+
+                var textArea = document.createElement('textarea');
+                textArea.value = cookiesString;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                // Hiển thị thông báo cho người dùng
+                document.getElementById('status').textContent = "Facebook cookies copied to clipboard!";
+            } else {
+                // Nếu không có cookie Facebook
+                document.getElementById('status').textContent = "No Facebook cookies found!";
+            }
         }
-    }
-
-    // Hàm sao chép vào clipboard
-    function copyToClipboard(text) {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-    }
-</script>
+    </script>
 
 </body>
 </html>
