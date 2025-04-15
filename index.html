@@ -1,58 +1,59 @@
-!DOCTYPE html
-html lang=en
-head
-    meta charset=UTF-8
-    meta name=viewport content=width=device-width, initial-scale=1.0
-    titleTrang Web Của Tôititle
-    style
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Của Tôi</title>
+    <style>
         body {
-            font-family Arial, sans-serif;
-            background-color #f4f4f4;
-            margin 0;
-            padding 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
+
         header {
-            background-color #333;
-            color white;
-            padding 10px 0;
-            text-align center;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
         }
+
         .content {
-            padding 20px;
-            text-align center;
+            padding: 20px;
+            text-align: center;
         }
+
         footer {
-            background-color #333;
-            color white;
-            text-align center;
-            padding 10px 0;
-            position fixed;
-            width 100%;
-            bottom 0;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
-    style
-head
-body
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chào mừng đến với trang web của tôi!</h1>
+    </header>
+    
+    <div class="content">
+        <p>Đây là một trang web mẫu đơn giản được triển khai trên GitHub Pages.</p>
+        <button onclick="changeText()">Nhấn để thay đổi nội dung</button>
+        <p id="dynamic-text"></p>
+    </div>
+    
+    <footer>
+        <p>© 2025 Trang Web Của Tôi</p>
+    </footer>
 
-    header
-        h1Chào mừng đến với trang web của tôi!h1
-    header
-
-    div class=content
-        pĐây là một trang web mẫu đơn giản được triển khai trên GitHub Pages.p
-        button onclick=changeText()Nhấn để thay đổi nội dungbutton
-        p id=dynamic-textp
-    div
-
-    footer
-        p&copy; 2025 Trang Web Của Tôip
-    footer
-
-    script
+    <script>
         function changeText() {
-            document.getElementById(dynamic-text).innerHTML = Nội dung đã thay đổi!;
+            document.getElementById("dynamic-text").innerHTML = "Nội dung đã thay đổi!";
         }
-    script
-
-body
-html
+    </script>
+</body>
+</html>
